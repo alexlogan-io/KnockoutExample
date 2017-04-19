@@ -68,7 +68,7 @@ export class ReportingController {
             this.title(this.vmArray()[this.selectedIndex()].name);
         }
         else {
-            this.title("Review");
+            this.title("Reviewwwwwwwww");
         }
     }
 }
