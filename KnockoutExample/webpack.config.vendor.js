@@ -31,7 +31,6 @@ module.exports = (env) => {
                 "jquery",
                 "knockout",
                 "bootstrap",
-                "lodash",
                 'bootstrap/dist/css/bootstrap.css'
             ],
         },
