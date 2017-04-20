@@ -5,8 +5,8 @@ install:
   - cd .\KnockoutExample\
   - npm install
   - npm install -g webpack
-  - webpack --config webpack.config.vendor.js
-  - webpack -d
+  - webpack --config webpack.config.vendor.js -p
+  - webpack -p
 build:
   verbosity: minimal
 #after_build:
