@@ -1,6 +1,7 @@
 version: 1.0.{build}
 install:
   - dotnet restore
+  - cd .\KnockoutExample\
   - npm install
   - webpack --config webpack.config.vendor.js
   - webpack -d
