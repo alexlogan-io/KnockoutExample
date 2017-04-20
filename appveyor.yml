@@ -9,5 +9,5 @@ install:
   - webpack -d
 build:
   verbosity: minimal
-after_build:
-- cmd: dotnet publish KnockoutExample --output %appveyor_build_folder%\dist
+#after_build:
+#- cmd: dotnet publish KnockoutExample --output %appveyor_build_folder%\dist
