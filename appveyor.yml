@@ -1,13 +1,9 @@
 version: 1.0.{build}
 install:
-- cmd: >-
-  dotnet restore
-
-  npm install
-
-  webpack --config webpack.config.vendor.js
-  
-  webpack -d
+  - dotnet restore
+  - npm install
+  - webpack --config webpack.config.vendor.js
+  - webpack -d
 build:
   verbosity: minimal
 after_build:
