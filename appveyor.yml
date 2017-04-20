@@ -9,4 +9,4 @@ install:
 build:
   verbosity: minimal
 after_build:
-- cmd: dotnet publish src\KnockoutExample --output %appveyor_build_folder%\dist
+- cmd: dotnet publish KnockoutExample --output %appveyor_build_folder%\dist
