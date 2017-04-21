@@ -8,12 +8,17 @@ export class ReportingBaseVM {
     columns: KnockoutObservableArray<string>;
     selectedColumns: KnockoutObservableArray<string>;
 
-    constructor(name: string, url: string) {
+    constructor(name: string, url?: string, columns?: string[]) {
         this.name = name;
-        this.columns = ko.observableArray([]);
         this.selectedColumns = ko.observableArray([]);
-        this.populateColumn(url);
         this.modelName = toPascal(this.name);
+
+        if (url) {
+            this.columns = ko.observableArray([]);
+            this.populateColumn(url);
+        } else {
+            this.columns = ko.observableArray(columns);
+        }
     }
 
     populateColumn = (url: string) => {

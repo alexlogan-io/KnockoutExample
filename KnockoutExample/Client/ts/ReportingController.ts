@@ -1,22 +1,5 @@
-﻿//import * as $ from "jquery";
-//needed for jquery to be available on page
-const $ = require('expose-loader?$!expose-loader?jQuery!jquery');
-import * as ko from "knockout";
-import { ReportingBaseVM } from "./ViewModels";
+﻿import * as ko from "knockout";
 import { toPascal } from "./Utils";
-
-//page specific css here 
-require('../css/site.css');
-
-($(function () {
-    let controller = new ReportingController();
-    let employeeColumnsVM = new ReportingBaseVM("Employee", "/reporting/getEmployeeColumns");
-    let dataCodesVM = new ReportingBaseVM("Data Codes", "/reporting/getDataCodeColumns");
-    let absenseVM = new ReportingBaseVM("Absense", "/reporting/getAbsenseColumns");
-    controller.addViewModel(employeeColumnsVM, dataCodesVM, absenseVM);
-    controller.init();
-    ko.applyBindings(controller);
-}));
 
 export class ReportingController {
     vmArray;

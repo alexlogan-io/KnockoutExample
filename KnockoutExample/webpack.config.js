@@ -11,10 +11,10 @@ module.exports = (env) => {
         stats: { modules: false },
         // Here the application starts executing and webpack starts bundling
         entry: {
-            'reporting': './Client/ts/Reporting.ts'
+            'app': './Client/ts/app.ts'
         },
         // options for resolving module requests
-        resolve: { extensions: ['.js', '.ts', '.jsx'] },
+        resolve: { extensions: ['.ts'] },
         output: {
             //the target directory for all output files
             path: path.join(__dirname, bundleOutputDir),
