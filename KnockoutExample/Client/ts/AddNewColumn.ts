@@ -10,7 +10,7 @@ export class AddNewColumn {
     showForm: KnockoutObservable<boolean>;
     reportingController: ReportingController;
 
-    constructor(reportingController: ReportingController) {
+    constructor(reportingController?: ReportingController) {
 
         this.title = ko.observable("");
         this.newColumns = ko.observableArray([]);
@@ -22,6 +22,7 @@ export class AddNewColumn {
 
     toggleForm = () => {
         this.showForm() ? this.showForm(false) : this.showForm(true);
+        return this.showForm();
     }
 
     addColumn = () => {
