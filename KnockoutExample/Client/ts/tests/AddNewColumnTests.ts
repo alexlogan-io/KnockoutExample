@@ -29,10 +29,9 @@ describe("Toggle Form when true", () => {
 describe("Add Column", () => {
     it("should add name to column list", () => {
         const addNewColumn = new AddNewColumn(null);
-        const newColumnsLength = addNewColumn.newColumns().length;
-        addNewColumn.newColumnName("test");
+        addNewColumn.newColumnName("testColumn");
         addNewColumn.addColumn();
-        const result = addNewColumn.newColumns().indexOf("test");
+        const result = addNewColumn.newColumns().indexOf("testColumn");
         expect(result).to.equal(0);
     })
 })
