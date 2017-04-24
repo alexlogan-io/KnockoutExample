@@ -31,7 +31,7 @@ namespace KnockoutExample
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Reporting}/{action=Index}/{id?}");
+                    template: "{controller=Quiz}/{action=Index}/{id?}");
             });
         }
     }

@@ -1,4 +1,4 @@
-﻿import { AddNewColumn } from "../AddNewColumn";
+﻿/*import { AddNewColumn } from "../AddNewColumn";
 import { expect } from "chai";
 
 describe("Hello World", () => {
@@ -35,3 +35,5 @@ describe("Add Column", () => {
         expect(result).to.equal(0);
     })
 })
+*/
+

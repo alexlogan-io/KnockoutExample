@@ -1,0 +1,92 @@
+﻿<div class="container">
+
+    <div id="mainQuiz">
+
+        <h1>Manchester United Trivia <span data-bind="text: selectedIndex"></span></h1>
+
+        <div class="col-md-1">
+            <button class="btn btn-block btn-default" data-bind="click: previous, disable: selectedIndex() <= 0">Prev</button>
+        </div>
+
+        <div class="col-md-10">
+            <div class="well">
+
+                <h2 data-bind="text: title"></h2>
+
+                <!-- ko if: selectedIndex() < questionArray().length -->
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+
+                        <div class="col-md-5">
+                            <div class="list-group" data-bind="foreach: questionArray()[selectedIndex()].options">
+                                <button type="button" class="list-group-item" data-bind="text: $data, click: function(){$parent.questionArray()[$parent.selectedIndex()].addToSelectedAnswers($data)}"></button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                        </div>
+
+                        <div class="col-md-5">
+                            <div class="list-group" data-bind="foreach: questionArray()[selectedIndex()].selectedOptions">
+                                <button type="button" class="list-group-item" data-bind="text: $data, click: function(){$parent.questionArray()[$parent.selectedIndex()].removeFromSelectedAnswers($data)}"></button>
+                                <div data-bind="visible: $parent.questionArray()[$parent.selectedIndex()].showAnswers()">
+                                    <i class="fa fa-check" aria-hidden="true" data-bind="visible: $parent.questionArray()[$parent.selectedIndex()].isCorrect($data)"></i>
+                                    <i class="fa fa-times" aria-hidden="true" data-bind="visible: !$parent.questionArray()[$parent.selectedIndex()].isCorrect($data)"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 col-md-offset-10" data-bind="visible: questionArray()[selectedIndex()].showAnswers">
+                            Score: <span data-bind="text: questionArray()[selectedIndex()].score"></span>
+                        </div>
+                        <div class="col-md-1 col-md-offset-10" data-bind="visible: questionArray()[selectedIndex()].showAnswers() === false">
+                            <button id="submit" class="btn btn-success" data-bind="click: questionArray()[selectedIndex()].getScore">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: selectedIndex() >= questionArray().length -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div data-bind="foreach: {data : questionArray(), as : 'item'}">
+                            <!-- ko if: showAnswers -->
+                            <div class="col-md-5">
+                                <h4 data-bind="text: item.name"></h4>
+                                <h3 data-bind="text: item.score"></h3>
+                                <div class="list-group" data-bind="foreach: {data: selectedOptions, as : 'columns'}">
+                                    <button type="button" class="list-group-item" data-bind="text: columns"></button>
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 col-md-offset-10">
+                            <button id="submit" class="btn btn-success" data-bind="click: submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+
+        <div class="col-md-1">
+            <button class="btn btn-block btn-info" data-bind="click: next, disable: selectedIndex() >= questionArray().length">Next</button>
+        </div>
+
+        <!--div id="debug">
+            <hr />
+            <h2>Debug</h2>
+            <div data-bind="text: ko.toJSON($data)"></div>
+        </div-->
+
+    </div>
+
+    
+</div>
+
+@section Scripts {
+    <script src="~/dist/app.js"></script>
+}

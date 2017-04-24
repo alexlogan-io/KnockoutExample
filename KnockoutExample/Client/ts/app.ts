@@ -1,22 +1,40 @@
 ﻿const $ = require('expose-loader?$!expose-loader?jQuery!jquery');
 import * as ko from "knockout";
-import { ReportingController } from "./ReportingController";
-import { ReportingBaseVM } from "./ReportingBaseVM";
-import { AddNewColumn } from "./AddNewColumn";
+import { QuizController } from "./QuizController";
+import { Question } from "./Question";
+//import { AddNewColumn } from "./AddNewColumn";
 import { toPascal } from "./Utils";
 
 //page specific css here 
 require('../css/site.css');
 
 ($(function () {
-    let controller = new ReportingController();
-    let employeeColumnsVM = new ReportingBaseVM("Employee", "/reporting/getEmployeeColumns");
-    let dataCodesVM = new ReportingBaseVM("Data Codes", "/reporting/getDataCodeColumns");
-    let absenseVM = new ReportingBaseVM("Absense", "/reporting/getAbsenseColumns");
-    controller.addViewModel(employeeColumnsVM, dataCodesVM, absenseVM);
-    controller.init();
-    ko.applyBindings(controller, document.getElementById("employeeColumns"));
+    const controller = new QuizController();
 
-    let addNewColumn = new AddNewColumn(controller);
-    ko.applyBindings(addNewColumn, document.getElementById("addNewColumn"));
+    const goals = new Question("Players Who Have Scored Over 100 Goals for Manchester United",
+        null,
+        null,
+        ["Wayne Rooney", "Juan Mata", "Ruud Van Nistelrooy", "Michael Carrick", "Roy Keane", "Denis Law"],
+        ["Wayne Rooney", "Ruud Van Nistelrooy", "Denis Law"]);
+
+    const champ = new Question("Players Who Have Won the Champions League with Manchester United",
+        null,
+        null,
+        ["Bobby Charlton", "Eric Cantona", "Steve Bruce", "Anderson", "Wes Brown", "Robin Van Persie"],
+        ["Bobby Charlton", "Anderson", "Wes Brown"]);
+    const sentOff = new Question("Players Who Have Been Sent Off for Manchester United",
+        null,
+        null,
+        ["Ryan Giggs", "Edwin Van De Sar", "Juan Mata", "Chris Smalling", "Phil Jones", "Bryan Robson"],
+        ["Juan Mata", "Chris Smalling", "Bryan Robson"]);
+
+    controller.addViewModel(goals, champ, sentOff);
+    controller.init();
+
+    console.log(controller);
+
+    ko.applyBindings(controller, document.getElementById("mainQuiz"));
+
+    //let addNewColumn = new AddNewColumn(controller);
+    //ko.applyBindings(addNewColumn, document.getElementById("addNewColumn"));
 }));

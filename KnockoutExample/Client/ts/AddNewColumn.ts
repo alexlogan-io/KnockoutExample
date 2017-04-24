@@ -1,4 +1,4 @@
-﻿import * as ko from "knockout";
+﻿/*import * as ko from "knockout";
 import { ReportingBaseVM } from "./ReportingBaseVM";
 import { ReportingController } from "./ReportingController";
 
@@ -40,3 +40,4 @@ export class AddNewColumn {
     }
 
 }
+*/

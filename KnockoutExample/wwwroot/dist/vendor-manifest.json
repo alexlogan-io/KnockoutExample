@@ -1,5 +1,5 @@
 {
-  "name": "vendor_c016f18ee1b153e476b0",
+  "name": "vendor_1f9d6a88d9603d06dbd3",
   "content": {
     "./node_modules/jquery/dist/jquery.js": {
       "id": 19,
@@ -17,11 +17,11 @@
       "id": 3,
       "meta": {}
     },
-    "./node_modules/knockout/build/output/knockout-latest.debug.js": {
+    "./node_modules/font-awesome/css/font-awesome.css": {
       "id": 4,
       "meta": {}
     },
-    "./node_modules/lodash/lodash.js": {
+    "./node_modules/knockout/build/output/knockout-latest.debug.js": {
       "id": 5,
       "meta": {}
     },
@@ -75,10 +75,6 @@
     },
     "./node_modules/expose-loader/index.js?$!./node_modules/jquery/dist/jquery.js": {
       "id": 18,
-      "meta": {}
-    },
-    "./node_modules/webpack/buildin/module.js": {
-      "id": 20,
       "meta": {}
     }
   }

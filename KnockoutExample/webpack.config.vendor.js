@@ -30,6 +30,7 @@ module.exports = (env) => {
             vendor: [
                 "jquery",
                 "knockout",
+                "font-awesome/css/font-awesome.css",
                 "bootstrap",
                 'bootstrap/dist/css/bootstrap.css'
             ],
