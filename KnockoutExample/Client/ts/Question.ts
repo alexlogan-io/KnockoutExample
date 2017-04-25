@@ -9,6 +9,7 @@ export class Question {
     answers: KnockoutObservableArray<string>;
     showAnswers: KnockoutObservable<boolean>;
     score: KnockoutObservable<number>;
+    answerStyle: KnockoutComputed<string>;
 
     constructor(name: string, optionsUrl?: string, answersUrl?: string, options?: string[], answers?: string[]) {
         this.name = name;
@@ -64,11 +65,27 @@ export class Question {
     }
 
     isCorrect = (item) => {
-        if (this.answers().indexOf(item) > -1) {
-            return true;
-        } else {
-            return false;
+        if (this.showAnswers()) {
+            if (this.answers().indexOf(item) > -1) {
+                return true;
+            } else {
+                return false;
+            }
         }
+
+        return false;
+    }
+
+    isFalse = (item) => {
+        if (this.showAnswers()) {
+            if (this.answers().indexOf(item) === -1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return false;
     }
 
     getScore = () => {

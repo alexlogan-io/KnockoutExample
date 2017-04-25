@@ -28,10 +28,8 @@ require('../css/site.css');
         ["Ryan Giggs", "Edwin Van De Sar", "Juan Mata", "Chris Smalling", "Phil Jones", "Bryan Robson"],
         ["Juan Mata", "Chris Smalling", "Bryan Robson"]);
 
-    controller.addViewModel(goals, champ, sentOff);
+    controller.addQuestion(goals, champ, sentOff);
     controller.init();
-
-    console.log(controller);
 
     ko.applyBindings(controller, document.getElementById("mainQuiz"));
 

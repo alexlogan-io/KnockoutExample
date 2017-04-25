@@ -27,7 +27,7 @@ export class QuizController {
         this.setTitle();
     }
 
-    addViewModel = (...question) => {
+    addQuestion = (...question) => {
         for (let item of question) {
             this.questionArray.push(item);
         }

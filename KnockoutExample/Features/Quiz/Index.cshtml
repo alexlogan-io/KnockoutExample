@@ -19,7 +19,9 @@
 
                         <div class="col-md-5">
                             <div class="list-group" data-bind="foreach: questionArray()[selectedIndex()].options">
-                                <button type="button" class="list-group-item" data-bind="text: $data, click: function(){$parent.questionArray()[$parent.selectedIndex()].addToSelectedAnswers($data)}"></button>
+                                <button type="button" class="list-group-item" data-bind="text: $data, 
+                                                                                        click: function(){$parent.questionArray()[$parent.selectedIndex()].addToSelectedAnswers($data)},
+                                                                                        disable: $parent.questionArray()[$parent.selectedIndex()].showAnswers()"></button>
                             </div>
                         </div>
 
@@ -28,18 +30,18 @@
 
                         <div class="col-md-5">
                             <div class="list-group" data-bind="foreach: questionArray()[selectedIndex()].selectedOptions">
-                                <button type="button" class="list-group-item" data-bind="text: $data, click: function(){$parent.questionArray()[$parent.selectedIndex()].removeFromSelectedAnswers($data)}"></button>
-                                <div data-bind="visible: $parent.questionArray()[$parent.selectedIndex()].showAnswers()">
-                                    <i class="fa fa-check" aria-hidden="true" data-bind="visible: $parent.questionArray()[$parent.selectedIndex()].isCorrect($data)"></i>
-                                    <i class="fa fa-times" aria-hidden="true" data-bind="visible: !$parent.questionArray()[$parent.selectedIndex()].isCorrect($data)"></i>
-                                </div>
+                                <button type="button" class="list-group-item" data-bind="text: $data, 
+                                                                                        click: function(){$parent.questionArray()[$parent.selectedIndex()].removeFromSelectedAnswers($data)}, 
+                                                                                        css: {correct: $parent.questionArray()[$parent.selectedIndex()].isCorrect($data),
+                                                                                                wrong: $parent.questionArray()[$parent.selectedIndex()].isFalse($data)},
+                                                                                        disable: $parent.questionArray()[$parent.selectedIndex()].showAnswers()""></button>
                             </div>
                         </div>
 
                     </div>
                     <div class="row">
-                        <div class="col-md-1 col-md-offset-10" data-bind="visible: questionArray()[selectedIndex()].showAnswers">
-                            Score: <span data-bind="text: questionArray()[selectedIndex()].score"></span>
+                        <div class="col-md-3 col-md-offset-8" data-bind="visible: questionArray()[selectedIndex()].showAnswers">
+                            <h3>Score: <span data-bind="text: questionArray()[selectedIndex()].score"></span></h3>
                         </div>
                         <div class="col-md-1 col-md-offset-10" data-bind="visible: questionArray()[selectedIndex()].showAnswers() === false">
                             <button id="submit" class="btn btn-success" data-bind="click: questionArray()[selectedIndex()].getScore">Submit</button>
@@ -84,8 +86,40 @@
 
     </div>
 
-    
-</div>
+    <div id="addNewColumn" class="col-md-4 col-md-offset-1">
+        <div class="row">
+            <button class="btn btn-default" data-bind="click: toggleForm">Add New Column</button>
+        </div>
+        <br />
+        <div data-bind="visible: showForm">
+            <!-- ko if: title().length > 0 || newColumns().length > 0 -->
+            <div class="row">
+                <div class="well">
+                    <h2 data-bind="text: title"></h2>
+
+                    <div class="list-group" data-bind="foreach: newColumns">
+                        <button type="button" class="list-group-item" data-bind="text: $data"></button>
+                    </div>
+                </div>
+            </div>
+            <!-- /ko -->
+
+            <form id="newColumnForm" data-bind="submit: submit">
+                <div class="form-group">
+                    <label class="control-label" for="Name">Title</label>
+                    <input id="Name" data-bind="textInput: title" class="form-control" name="Name" type="text" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="NewColumn">New Column</label>
+                    <input id="NewColumn" data-bind="textInput: newColumnName" class="form-control" name="NewColumn" type="text" />
+                    <button class="btn btn-default" data-bind="click: addColumn">Add New</button>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
 @section Scripts {
     <script src="~/dist/app.js"></script>
