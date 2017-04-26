@@ -87,6 +87,18 @@ export class Question {
         return false;
     }
 
+    isSelected = (item) => {
+        if (this.showAnswers()) {
+            if (this.selectedOptions().indexOf(item) > -1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
     getScore = () => {
         if (!this.showAnswers()) {
             this.showAnswers(true);

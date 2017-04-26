@@ -2,12 +2,11 @@
 import * as ko from "knockout";
 import { QuizController } from "./QuizController";
 import { Question } from "./Question";
-//import { AddNewColumn } from "./AddNewColumn";
+import { AddNewQuestion } from "./AddNewQuestion";
 import { toPascal } from "./Utils";
 
 //page specific css here 
-require('../css/site.css');
-require('../css/lessTest.less');
+require('../css/main.less');
 
 ($(function () {
     const controller = new QuizController();
@@ -34,6 +33,6 @@ require('../css/lessTest.less');
 
     ko.applyBindings(controller, document.getElementById("mainQuiz"));
 
-    //let addNewColumn = new AddNewColumn(controller);
-    //ko.applyBindings(addNewColumn, document.getElementById("addNewColumn"));
+    const addNewQuestion = new AddNewQuestion(controller);
+    ko.applyBindings(addNewQuestion, document.getElementById("addNewQuestion"));
 }));

@@ -1,14 +1,20 @@
-body {
-  background: #e6e6e6;
+﻿@import "colors.less";
+@import "mixins.less";
+
+body{
+    background: darken(@main-color, 10%);
 }
+
 .correct {
-  background-color: #00b300;
-  color: white !important;
+    background-color: lighten(green,10%);
+    color: white !important;
 }
+
 .wrong {
-  background-color: #ff6666;
-  color: white !important;
+    background-color: lighten(red,20%);
+    color: white !important;
 }
+
 /*
     example from less pluralsight course 
 #container{
@@ -38,5 +44,3 @@ nav{
     }
 }
     */
-
-/*# sourceMappingURL=site.css.map*/
