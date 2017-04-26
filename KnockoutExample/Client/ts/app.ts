@@ -7,6 +7,7 @@ import { toPascal } from "./Utils";
 
 //page specific css here 
 require('../css/site.css');
+require('../css/lessTest.less');
 
 ($(function () {
     const controller = new QuizController();

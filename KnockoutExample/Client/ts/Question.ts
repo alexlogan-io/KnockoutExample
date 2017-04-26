@@ -9,7 +9,6 @@ export class Question {
     answers: KnockoutObservableArray<string>;
     showAnswers: KnockoutObservable<boolean>;
     score: KnockoutObservable<number>;
-    answerStyle: KnockoutComputed<string>;
 
     constructor(name: string, optionsUrl?: string, answersUrl?: string, options?: string[], answers?: string[]) {
         this.name = name;

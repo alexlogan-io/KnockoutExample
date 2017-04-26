@@ -15,7 +15,7 @@ module.exports = (env) => {
             'app': './Client/ts/app.ts'
         },
         // options for resolving module requests
-        resolve: { extensions: ['.ts'] },
+        resolve: { extensions: ['.ts', '.js', '.less'] },
         output: {
             //the target directory for all output files
             path: path.join(__dirname, bundleOutputDir),
@@ -31,7 +31,16 @@ module.exports = (env) => {
                 { test: /\.html$/, use: 'raw-loader' },
                 { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader' }) },
                 { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' },
-                { test: /\.jsx$/, exclude: /node_modules/, loader: "babel-loader" }
+                {
+                    test: /\.less$/,
+                    use: ExtractTextPlugin.extract({
+                        use: [{
+                            loader: "css-loader" 
+                        }, {
+                            loader: "less-loader"
+                        }]
+                    })
+                }
             ]
         },
         // list of additional plugins

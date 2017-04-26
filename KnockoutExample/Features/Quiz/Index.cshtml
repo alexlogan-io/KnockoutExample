@@ -50,24 +50,25 @@
                 </div>
                 <!-- /ko -->
                 <!-- ko if: selectedIndex() >= questionArray().length -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div data-bind="foreach: {data : questionArray(), as : 'item'}">
-                            <!-- ko if: showAnswers -->
-                            <div class="col-md-5">
-                                <h4 data-bind="text: item.name"></h4>
-                                <h3 data-bind="text: item.score"></h3>
-                                <div class="list-group" data-bind="foreach: {data: selectedOptions, as : 'columns'}">
-                                    <button type="button" class="list-group-item" data-bind="text: columns"></button>
-                                </div>
+                <div class="col-md-12">
+                    <div data-bind="foreach: {data : questionArray(), as : 'item'}">
+                        <!-- ko if: showAnswers -->
+                        <div class="col-md-5">
+                            <h4 data-bind="text: item.name"></h4>
+                            <h3 data-bind="text: item.score"></h3>
+                            <div class="list-group" data-bind="foreach: {data: selectedOptions, as : 'columns'}">
+                                <button type="button" class="list-group-item" data-bind="text: columns"></button>
                             </div>
-                            <!-- /ko -->
                         </div>
+                        <!-- /ko -->
                     </div>
-                    <div class="row">
-                        <div class="col-md-1 col-md-offset-10">
-                            <button id="submit" class="btn btn-success" data-bind="click: submit">Submit</button>
-                        </div>
+                    <div class="col-md-5">
+                        <h1>Score <span data-bind="text: totalScore"></span></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 col-md-offset-10">
+                        <button id="submit" class="btn btn-success" data-bind="click: submit">Submit</button>
                     </div>
                 </div>
                 <!-- /ko -->
@@ -84,41 +85,6 @@
             <div data-bind="text: ko.toJSON($data)"></div>
         </div-->
 
-    </div>
-
-    <div id="addNewColumn" class="col-md-4 col-md-offset-1">
-        <div class="row">
-            <button class="btn btn-default" data-bind="click: toggleForm">Add New Column</button>
-        </div>
-        <br />
-        <div data-bind="visible: showForm">
-            <!-- ko if: title().length > 0 || newColumns().length > 0 -->
-            <div class="row">
-                <div class="well">
-                    <h2 data-bind="text: title"></h2>
-
-                    <div class="list-group" data-bind="foreach: newColumns">
-                        <button type="button" class="list-group-item" data-bind="text: $data"></button>
-                    </div>
-                </div>
-            </div>
-            <!-- /ko -->
-
-            <form id="newColumnForm" data-bind="submit: submit">
-                <div class="form-group">
-                    <label class="control-label" for="Name">Title</label>
-                    <input id="Name" data-bind="textInput: title" class="form-control" name="Name" type="text" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="NewColumn">New Column</label>
-                    <input id="NewColumn" data-bind="textInput: newColumnName" class="form-control" name="NewColumn" type="text" />
-                    <button class="btn btn-default" data-bind="click: addColumn">Add New</button>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">Submit</button>
-                </div>
-            </form>
-        </div>
     </div>
 
 @section Scripts {
