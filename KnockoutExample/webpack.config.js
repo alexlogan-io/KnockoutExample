@@ -29,7 +29,7 @@ module.exports = (env) => {
             rules: [
                 { test: /\.ts$/, use: 'awesome-typescript-loader' },
                 { test: /\.html$/, use: 'raw-loader' },
-                { test: /\.css$/, use: ExtractTextPlugin.extract({ use: 'css-loader' }) },
+                { test: /\.css$/, use: ExtractTextPlugin.extract({ use: isDevBuild ? 'css-loader' : 'css-loader?minimize' }) },
                 { test: /\.(png|jpg|jpeg|gif|svg)$/, use: 'url-loader?limit=25000' },
                 {
                     test: /\.less$/,

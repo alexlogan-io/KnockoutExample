@@ -5,9 +5,15 @@ body {
   background-color: #00b300;
   color: white !important;
 }
+.correct:hover {
+  background-color: #009a00;
+}
 .wrong {
   background-color: #ff6666;
   color: white !important;
+}
+.wrong:hover {
+  background-color: #ff3333;
 }
 /*
     example from less pluralsight course 
