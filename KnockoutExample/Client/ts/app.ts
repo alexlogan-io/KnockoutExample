@@ -11,7 +11,7 @@ require('../css/main.less');
 ($(function () {
     const controller = new QuizController();
 
-    const goals = new Question("Players Who Have Scored Over 100 Goals for Manchester United",
+    const goals = new Question("Players Who Have Scored Over 1000000000 Goals for Manchester United",
         null,
         null,
         ["Wayne Rooney", "Juan Mata", "Ruud Van Nistelrooy", "Michael Carrick", "Roy Keane", "Denis Law"],
