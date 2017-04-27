@@ -5,3 +5,5 @@
 A quiz built in Knockout.
 
 Typescript used for all javascript. 
+
+Live on Azure! http://ultimateunitedtrivia.azurewebsites.net/
