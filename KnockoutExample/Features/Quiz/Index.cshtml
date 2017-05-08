@@ -2,7 +2,7 @@
 
     <div id="mainQuiz" style="display: none;" data-bind="visible: true">
 
-        <h1>Manchester United Trivia <span data-bind="text: selectedIndex"></span></h1>
+        <h1>Manchester United Trivia <!--span data-bind="text: selectedIndex"></span--></h1>
 
         <div class="col-md-1">
             <button class="btn btn-block btn-default" data-bind="click: previous, disable: selectedIndex() <= 0">Prev</button>
@@ -52,23 +52,10 @@
                 </div>
                 <!-- /ko -->
                 <!-- ko if: selectedIndex() >= questionArray().length -->
-                <div class="col-md-12">
-                    <div data-bind="foreach: {data : questionArray(), as : 'item'}">
-                        <!-- ko if: showAnswers -->
-                        <div class="col-md-5">
-                            <h4 data-bind="text: item.name"></h4>
-                            <h3 data-bind="text: item.score"></h3>
-                            <div class="list-group" data-bind="foreach: {data: selectedOptions, as : 'columns'}">
-                                <button type="button" class="list-group-item" data-bind="text: columns"></button>
-                            </div>
-                        </div>
-                        <!-- /ko -->
-                    </div>
+                <div class="row">
                     <div class="col-md-5">
                         <h1>Score <span data-bind="text: totalScore"></span></h1>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-5">
                         <form id="newScoreForm" data-bind="submit: addScore">
                             <div class="form-group">
@@ -79,6 +66,27 @@
                                 <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5">
+                        <h4>You're answers...</h4>
+                        <hr />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div data-bind="foreach: {data : questionArray(), as : 'item'}">
+                            <!-- ko if: showAnswers -->
+                            <div class="col-md-5">
+                                <h4 data-bind="text: item.name"></h4>
+                                <h3 data-bind="text: item.score"></h3>
+                                <div class="list-group" data-bind="foreach: {data: selectedOptions, as : 'columns'}">
+                                    <button type="button" class="list-group-item" data-bind="text: columns"></button>
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                        </div>
                     </div>
                 </div>
                 <!-- /ko -->
