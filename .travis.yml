@@ -1,0 +1,13 @@
+language: csharp
+dist: trusty
+sudo: required
+mono: none
+dotnet: 1.0.1
+script:
+  - dotnet restore
+  - cd .\KnockoutExample\
+  - npm install
+  - npm install -g webpack mocha chai ts-node
+  - webpack --config webpack.config.vendor.js -p
+  - webpack -p
+  - npm test
