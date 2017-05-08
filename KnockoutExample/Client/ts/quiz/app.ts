@@ -1,15 +1,15 @@
 ﻿const $ = require('expose-loader?$!expose-loader?jQuery!jquery');
 import * as ko from "knockout";
-import { QuizController } from "./QuizController";
+import { Quiz } from "./Quiz";
 import { Question } from "./Question";
 import { AddNewQuestion } from "./AddNewQuestion";
-import { toPascal } from "./Utils";
+import { toPascal } from "../Utils";
 
 //page specific css here 
-require('../css/main.less');
+require('../../css/main.less');
 
 ($(function () {
-    const controller = new QuizController();
+    const quiz = new Quiz();
 
     const goals = new Question("Players Who Have Scored Over 100 Goals for Manchester United",
         null,
@@ -28,11 +28,11 @@ require('../css/main.less');
         ["Ryan Giggs", "Edwin Van De Sar", "Juan Mata", "Chris Smalling", "Phil Jones", "Bryan Robson"],
         ["Juan Mata", "Chris Smalling", "Bryan Robson"]);
 
-    controller.addQuestion(goals, champ, sentOff);
-    controller.init();
+    quiz.addQuestion(goals, champ, sentOff);
+    quiz.init();
 
-    ko.applyBindings(controller, document.getElementById("mainQuiz"));
+    ko.applyBindings(quiz, document.getElementById("mainQuiz"));
 
-    const addNewQuestion = new AddNewQuestion(controller);
+    const addNewQuestion = new AddNewQuestion(quiz);
     ko.applyBindings(addNewQuestion, document.getElementById("addNewQuestion"));
 }));

@@ -1,8 +1,8 @@
 ﻿import * as ko from "knockout";
-import { toPascal } from "./Utils";
-import { Question } from "../ts/Question";
+import { toPascal } from "../Utils";
+import { Question } from "./Question";
 
-export class QuizController {
+export class Quiz {
     questionArray: KnockoutObservableArray<Question>;
     selectedIndex: KnockoutObservable<number>;
     title: KnockoutObservable<string>;

@@ -1,6 +1,6 @@
 ﻿import * as $ from "jquery";
 import * as ko from "knockout";
-import { toPascal } from "./Utils";
+import { toPascal } from "../Utils";
 
 export class Question {
     name: string;

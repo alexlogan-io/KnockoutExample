@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Client\ts\leaderboard\tests\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>

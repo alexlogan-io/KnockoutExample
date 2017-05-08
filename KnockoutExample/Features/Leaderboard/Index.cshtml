@@ -1,0 +1,39 @@
+﻿<div class="container">
+
+    <div id="leaderboard">
+        
+        <h1>Leaderboard</h1>
+
+        <div class="col-md-10 col-md-offset-1">
+            <div class="well">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: scores">
+                        <tr>
+                            <td data-bind="text: name"></td>
+                            <td data-bind="text: date"></td>
+                            <td data-bind="text: score"></td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <!--div id="debug">
+        <hr />
+        <h2>Debug</h2>
+        <div data-bind="text: ko.toJSON($data)"></div>
+    </div-->
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/dist/leaderboard.js"></script>
+}

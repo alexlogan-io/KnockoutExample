@@ -8,8 +8,9 @@ body{
 .correct {
     background-color: lighten(green,10%);
     color: white !important;
-    &:hover{
-        background-color:lighten(green, 5%);
+
+    &:hover {
+        background-color: lighten(green, 5%) !important;
     }
 }
 
@@ -17,8 +18,24 @@ body{
     background-color: lighten(red,20%);
     color: white !important;
     &:hover{
-        background-color: lighten(red,10%);
+        background-color: lighten(red,10%) !important;
     }
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }
 
 /*

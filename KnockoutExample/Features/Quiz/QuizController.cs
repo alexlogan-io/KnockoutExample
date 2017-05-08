@@ -15,11 +15,6 @@ namespace KnockoutExample.Features.Quiz
             return View();
         }
 
-        public IActionResult Less()
-        {
-            return View();
-        }
-
         public IActionResult GetGoalsOptions()
         {
             return Json(new string[] { "Wayne Rooney", "Juan Mata", "Ruud Van Nistelrooy", "Michael Carrick", "Roy Keane", "Denis Law", });

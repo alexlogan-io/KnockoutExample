@@ -12,7 +12,8 @@ module.exports = (env) => {
         stats: { modules: false },
         // Here the application starts executing and webpack starts bundling
         entry: {
-            'app': './Client/ts/app.ts'
+            'quiz': './Client/ts/quiz/app.ts',
+            'leaderboard': './Client/ts/leaderboard/app.ts'
         },
         // options for resolving module requests
         resolve: { extensions: ['.ts', '.js', '.less'] },

@@ -1,5 +1,5 @@
 ﻿import * as ko from "knockout";
-import { QuizController } from "./QuizController"
+import { Quiz } from "./Quiz"
 import { Question } from "./Question";
 
 export class AddNewQuestion {
@@ -10,9 +10,9 @@ export class AddNewQuestion {
     newAnswers: KnockoutObservableArray<string>;
     newAnswer: KnockoutObservable<string>;
     showForm: KnockoutObservable<boolean>;
-    quizController: QuizController;
+    quizController: Quiz;
 
-    constructor(quizController?: QuizController) {
+    constructor(quizController?: Quiz) {
 
         this.title = ko.observable("");
         this.newOptions = ko.observableArray([]);
