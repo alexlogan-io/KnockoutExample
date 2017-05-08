@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "webpack-vendor": "webpack --config webpack.config.vendor.js && webpack -d",
-    "test": "mocha -r ts-node/register Client/ts/tests/*.ts"
+    "test": "mocha -r ts-node/register Client/ts/**/tests/*.ts"
   },
   "devDependencies": {
     "@types/chai": "^3.5.1",
