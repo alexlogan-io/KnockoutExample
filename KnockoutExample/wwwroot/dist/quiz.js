@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "3f332d81feb25f322fc9"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c260d66fecf326e0f00f"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotMainModule = true; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -3005,16 +3005,38 @@ var Question_1 = __webpack_require__(22);
 var AddNewQuestion_1 = __webpack_require__(26);
 //page specific css here 
 __webpack_require__(11);
+var getQuestions = function (url) {
+    return new Promise(function (resolve, reject) {
+        var req = new XMLHttpRequest();
+        req.open('GET', url);
+        req.onload = function () {
+            if (req.status === 200) {
+                resolve(JSON.parse(req.response));
+            }
+            else {
+                reject(Error(req.statusText));
+            }
+        };
+        req.onerror = function () {
+            reject(Error("Network Error"));
+        };
+        req.send();
+    });
+};
 ($(function () {
     var quiz = new Quiz_1.Quiz();
-    var goals = new Question_1.Question("Players Who Have Scored Over 100 Goals for Manchester United", null, null, ["Wayne Rooney", "Juan Mata", "Ruud Van Nistelrooy", "Michael Carrick", "Roy Keane", "Denis Law"], ["Wayne Rooney", "Ruud Van Nistelrooy", "Denis Law"]);
-    var champ = new Question_1.Question("Players Who Have Won the Champions League with Manchester United", null, null, ["Bobby Charlton", "Eric Cantona", "Steve Bruce", "Anderson", "Wes Brown", "Robin Van Persie"], ["Bobby Charlton", "Anderson", "Wes Brown"]);
-    var sentOff = new Question_1.Question("Players Who Have Been Sent Off for Manchester United", null, null, ["Ryan Giggs", "Edwin Van De Sar", "Juan Mata", "Chris Smalling", "Phil Jones", "Bryan Robson"], ["Juan Mata", "Chris Smalling", "Bryan Robson"]);
-    quiz.addQuestion(goals, champ, sentOff);
-    quiz.init();
-    ko.applyBindings(quiz, document.getElementById("mainQuiz"));
-    var addNewQuestion = new AddNewQuestion_1.AddNewQuestion(quiz);
-    ko.applyBindings(addNewQuestion, document.getElementById("addNewQuestion"));
+    getQuestions('/quiz/getquestions')
+        .then(function (res) {
+        console.log(res);
+        for (var _i = 0, res_1 = res; _i < res_1.length; _i++) {
+            var item = res_1[_i];
+            quiz.addQuestion(new Question_1.Question(item.question, null, null, item.options, item.answers));
+        }
+        quiz.init();
+        ko.applyBindings(quiz, document.getElementById("mainQuiz"));
+        var addNewQuestion = new AddNewQuestion_1.AddNewQuestion(quiz);
+        ko.applyBindings(addNewQuestion, document.getElementById("addNewQuestion"));
+    });
 }));
 
 
@@ -3103,6 +3125,14 @@ var Quiz = (function () {
         };
         this.submit = function () {
             console.log("submit");
+        };
+        this.addScore = function (form) {
+            var newScore = {
+                name: form.Name.value,
+                score: _this.totalScore(),
+                date: new Date()
+            };
+            console.log(form.Name.value);
         };
         this.setTitle = function () {
             if (_this.selectedIndex() >= 0 && _this.selectedIndex() < _this.questionArray().length) {

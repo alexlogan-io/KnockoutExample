@@ -15,34 +15,25 @@ namespace KnockoutExample.Features.Quiz
             return View();
         }
 
-        public IActionResult GetGoalsOptions()
+        public IActionResult GetQuestions()
         {
-            return Json(new string[] { "Wayne Rooney", "Juan Mata", "Ruud Van Nistelrooy", "Michael Carrick", "Roy Keane", "Denis Law", });
-        }
+            var questionsList = new List<object>
+            {
+                new {Question = "Players Who Have Scored Over 100 Goals for Manchester United",
+                    Options = new List<string>{"Wayne Rooney", "Juan Mata", "Ruud Van Nistelrooy", "Michael Carrick", "Roy Keane", "Denis Law" },
+                    Answers = new List<string>{ "Wayne Rooney", "Ruud Van Nistelrooy", "Denis Law" }
+                },
+                new {Question = "Players Who Have Won the Champions League with Manchester United",
+                    Options = new List<string>{ "Bobby Charlton", "Eric Cantona", "Steve Bruce", "Anderson", "Wes Brown", "Robin Van Persie"},
+                    Answers = new List<string>{ "Bobby Charlton", "Anderson", "Wes Brown" }
+                },
+                new {Question = "Players Who Have Been Sent Off for Manchester United",
+                    Options = new List<string>{ "Ryan Giggs", "Edwin Van De Sar", "Juan Mata", "Chris Smalling", "Phil Jones", "Bryan Robson" },
+                    Answers = new List<string>{ "Juan Mata", "Chris Smalling", "Bryan Robson" }
+                },
+            };
 
-        public IActionResult GetGoalsAnswers()
-        {
-            return Json(new string[] { "Wayne Rooney", "Ruud Van Nistelrooy", "Denis Law" });
-        }
-
-        public IActionResult GetChampOptions()
-        {
-            return Json(new string[] { "Bobby Charlton", "Eric Cantona", "Steve Bruce", "Anderson", "Wes Brown", "Robin Van Persie"});
-        }
-
-        public IActionResult GetChampAnswers()
-        {
-            return Json(new string[] { "Bobby Charlton","Anderson","Wes Brown" });
-        }
-
-        public IActionResult GetSentOffOptions()
-        {
-            return Json(new string[] { "Ryan Giggs", "Edwin Van De Sar", "Juan Mata", "Chris Smalling", "Phil Jones", "Bryan Robson" });
-        }
-
-        public IActionResult GetSentOffAnswers()
-        {
-            return Json(new string[] { "Juan Mata", "Chris Smalling", "Bryan Robson" });
+            return Json(questionsList);
         }
 
         public IActionResult Submit(string columns)

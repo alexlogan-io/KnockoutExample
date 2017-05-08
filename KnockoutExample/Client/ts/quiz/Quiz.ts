@@ -47,6 +47,15 @@ export class Quiz {
         console.log("submit");
     }
 
+    addScore = (form) => {
+        const newScore = {
+            name: form.Name.value,
+            score: this.totalScore(),
+            date: new Date()
+        }
+        console.log(form.Name.value);
+    }
+
     private setTitle = () => {
         if (this.selectedIndex() >= 0 && this.selectedIndex() < this.questionArray().length) {
             this.title(this.questionArray()[this.selectedIndex()].name);

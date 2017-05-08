@@ -8,31 +8,43 @@ import { toPascal } from "../Utils";
 //page specific css here 
 require('../../css/main.less');
 
+const getQuestions = (url) => {
+    return new Promise((resolve, reject) => {
+        const req = new XMLHttpRequest();
+
+        req.open('GET', url);
+
+        req.onload = () => {
+            if (req.status === 200) {
+                resolve(JSON.parse(req.response));
+            } else {
+                reject(Error(req.statusText));
+            }
+        }
+
+        req.onerror = () => {
+            reject(Error("Network Error"));
+        }
+
+        req.send();
+    });
+}
+
 ($(function () {
     const quiz = new Quiz();
 
-    const goals = new Question("Players Who Have Scored Over 100 Goals for Manchester United",
-        null,
-        null,
-        ["Wayne Rooney", "Juan Mata", "Ruud Van Nistelrooy", "Michael Carrick", "Roy Keane", "Denis Law"],
-        ["Wayne Rooney", "Ruud Van Nistelrooy", "Denis Law"]);
+    getQuestions('/quiz/getquestions')
+        .then((res: Array<any>) => {
+            console.log(res);
+            for (let item of res) {
+                quiz.addQuestion(new Question(item.question, null, null, item.options, item.answers))
+            }
 
-    const champ = new Question("Players Who Have Won the Champions League with Manchester United",
-        null,
-        null,
-        ["Bobby Charlton", "Eric Cantona", "Steve Bruce", "Anderson", "Wes Brown", "Robin Van Persie"],
-        ["Bobby Charlton", "Anderson", "Wes Brown"]);
-    const sentOff = new Question("Players Who Have Been Sent Off for Manchester United",
-        null,
-        null,
-        ["Ryan Giggs", "Edwin Van De Sar", "Juan Mata", "Chris Smalling", "Phil Jones", "Bryan Robson"],
-        ["Juan Mata", "Chris Smalling", "Bryan Robson"]);
+            quiz.init();
 
-    quiz.addQuestion(goals, champ, sentOff);
-    quiz.init();
+            ko.applyBindings(quiz, document.getElementById("mainQuiz"));
 
-    ko.applyBindings(quiz, document.getElementById("mainQuiz"));
-
-    const addNewQuestion = new AddNewQuestion(quiz);
-    ko.applyBindings(addNewQuestion, document.getElementById("addNewQuestion"));
+            const addNewQuestion = new AddNewQuestion(quiz);
+            ko.applyBindings(addNewQuestion, document.getElementById("addNewQuestion"));
+        });
 }));
